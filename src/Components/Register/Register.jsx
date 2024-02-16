@@ -1,21 +1,28 @@
-import React from "react";
+import React, { useState } from "react";
 // import styles from './Register.module.css';
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+
 export default function Register() {
   let navigate = useNavigate();
+  let [errorMsg, setErrorMsg] = useState('');
+  let [isLodding, setIsLodding] = useState(false);
 
   async function callRegister(reqBody) {
+    setIsLodding(true);
     try {
+      setErrorMsg("");
       let { data } = await axios.post(
         `https://ecommerce.routemisr.com/api/v1/auth/signup`,
         reqBody
-      );
-      console.log(data);
+      ).catch(err => {
+        setIsLodding(false);
+        setErrorMsg(err.response.data.message);
+      });
+      
       if (data.message === "success") {
-        console.log("success");
         navigate("../login");
       } else {
         console.log(data.message);
@@ -57,9 +64,15 @@ export default function Register() {
     validationSchema,
     onSubmit: callRegister,
   });
+
   return (
     <div className="w-50 mx-auto my-5">
       <h2 className="mb-3">Register Now</h2>
+      {errorMsg ? (
+        <div className="alert alert-danger mt-3">
+          {errorMsg}
+        </div>
+      ) : null}
       <form onSubmit={registerForm.handleSubmit}>
         <div className="form-group my-3">
           <label htmlFor="fullName" className="mb-1">
@@ -73,10 +86,10 @@ export default function Register() {
             name="name"
             onChange={registerForm.handleChange}
             onBlur={registerForm.handleBlur}
+            disabled={isLodding}
           />
           {registerForm.errors.name && registerForm.touched.name ? (
             <div className="alert alert-danger mt-3">
-              {" "}
               {registerForm.errors.name}
             </div>
           ) : null}
@@ -93,10 +106,10 @@ export default function Register() {
             name="email"
             onChange={registerForm.handleChange}
             onBlur={registerForm.handleBlur}
+            disabled={isLodding}
           />
           {registerForm.errors.email && registerForm.touched.email ? (
             <div className="alert alert-danger mt-3">
-              {" "}
               {registerForm.errors.email}
             </div>
           ) : null}
@@ -113,10 +126,10 @@ export default function Register() {
             name="password"
             onChange={registerForm.handleChange}
             onBlur={registerForm.handleBlur}
+            disabled={isLodding}
           />
           {registerForm.errors.password && registerForm.touched.password ? (
             <div className="alert alert-danger mt-3">
-              {" "}
               {registerForm.errors.password}
             </div>
           ) : null}
@@ -133,10 +146,10 @@ export default function Register() {
             name="rePassword"
             onChange={registerForm.handleChange}
             onBlur={registerForm.handleBlur}
+            disabled={isLodding}
           />
           {registerForm.errors.rePassword && registerForm.touched.rePassword ? (
             <div className="alert alert-danger mt-3">
-              {" "}
               {registerForm.errors.rePassword}
             </div>
           ) : null}
@@ -153,17 +166,25 @@ export default function Register() {
             name="phone"
             onChange={registerForm.handleChange}
             onBlur={registerForm.handleBlur}
+            disabled={isLodding}
           />
           {registerForm.errors.phone && registerForm.touched.phone ? (
             <div className="alert alert-danger mt-3">
-              {" "}
               {registerForm.errors.phone}
             </div>
           ) : null}
         </div>
         <div className="d-flex justify-content-end my-3">
-          <button type="submit" className="btn text-light btn-success">
-            Register
+          <button
+            type="submit"
+            className="btn text-light btn-success"
+            disabled={isLodding}
+          >
+            {isLodding ? (
+              <i className="fa fa-spinner fa-spin"></i>
+            ) : (
+              "Register"
+            )}
           </button>
         </div>
       </form>
