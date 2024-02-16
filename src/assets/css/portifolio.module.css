@@ -1,0 +1,98 @@
+#contact h1 {
+  font-size: 2.7em;
+  padding-block: 8px;
+  color: RGB(44, 62, 80);
+  font-weight: bold;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+.icon {
+  color: RGB(44, 62, 80);
+  font-size: 25px;
+  padding-inline: 10px;
+}
+.line {
+  width: 100px;
+  height: 4px;
+  background-color: RGB(44, 62, 80);
+}
+.parent_layer {
+  cursor: pointer;
+}
+.parent_layer img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.layer {
+  background-color: #3abfa0bd;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: 0.7s all;
+}
+.parent_layer:hover .layer {
+  opacity: 1;
+}
+.icons{
+  font-size:100px;
+  font-weight: bold;
+}
+#above_layer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  background-color: #8fa0ec80;
+}
+
+#inner_layer{
+  width: 45%;
+  height: 55%;
+}
+
+@media screen and (max-width: 580px) {
+  #contact h1 {
+    font-size: 2em;
+  }
+ 
+  
+}
+
+
+@media screen and (max-width : 1550px){
+  #inner_layer{
+    width:45%;
+  }
+}
+@media screen and (max-width : 1160px){
+  #inner_layer{
+    width:55%;
+  }
+}
+
+@media screen and (max-width : 750px) {
+  #inner_layer{
+    width:60%;
+  }
+}
+
+@media screen and (max-width : 570px) {
+  #inner_layer{
+    width:80%;
+  }
+}
+@media screen and (max-width : 425px) {
+  #inner_layer{
+    width:98%;
+  }
+}
