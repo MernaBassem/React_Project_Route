@@ -7,21 +7,20 @@ import axios from "axios";
 
 export default function Register() {
   let navigate = useNavigate();
-  let [errorMsg, setErrorMsg] = useState('');
+  let [errorMsg, setErrorMsg] = useState("");
   let [isLodding, setIsLodding] = useState(false);
 
   async function callRegister(reqBody) {
     setIsLodding(true);
     try {
       setErrorMsg("");
-      let { data } = await axios.post(
-        `https://ecommerce.routemisr.com/api/v1/auth/signup`,
-        reqBody
-      ).catch(err => {
-        setIsLodding(false);
-        setErrorMsg(err.response.data.message);
-      });
-      
+      let { data } = await axios
+        .post(`https://ecommerce.routemisr.com/api/v1/auth/signup`, reqBody)
+        .catch((err) => {
+          setIsLodding(false);
+          setErrorMsg(err.response.data.message);
+        });
+
       if (data.message === "success") {
         navigate("../login");
       } else {
@@ -69,9 +68,7 @@ export default function Register() {
     <div className="w-50 mx-auto my-5">
       <h2 className="mb-3">Register Now</h2>
       {errorMsg ? (
-        <div className="alert alert-danger mt-3">
-          {errorMsg}
-        </div>
+        <div className="alert alert-danger mt-3">{errorMsg}</div>
       ) : null}
       <form onSubmit={registerForm.handleSubmit}>
         <div className="form-group my-3">
@@ -180,11 +177,7 @@ export default function Register() {
             className="btn text-light btn-success"
             disabled={isLodding}
           >
-            {isLodding ? (
-              <i className="fa fa-spinner fa-spin"></i>
-            ) : (
-              "Register"
-            )}
+            {isLodding ? <i className="fa fa-spinner fa-spin"></i> : "Register"}
           </button>
         </div>
       </form>
