@@ -16,7 +16,7 @@ export default function MainSlider() {
   };
   return (
     <>
-      <div className="container my-5">
+      <div className="container my-5  overflow-hidden ">
         <div className="row gap-0">
           <div className="col-md-8">
             <Slider {...settings} className="w-100">

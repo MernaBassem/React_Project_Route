@@ -28,7 +28,7 @@ export default function CategorySlider() {
 
     return (
         <>
-            <div className="container mb-5 pb-5">
+            <div className="container mb-5 pb-5 overflow-hidden ">
                 <h2 className="my-3">
                     Shop Popular Category
                 </h2>
