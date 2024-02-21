@@ -6,13 +6,18 @@ import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { TokenContext } from "../../Context/Token";
-
+import {Helmet} from "react-helmet";
 export default function Login() {
   let navigate = useNavigate();
   let [errorMsg, setErrorMsg] = useState("");
   let [isLodding, setIsLodding] = useState(false);
   let {setToken} = useContext(TokenContext)
   async function callLogin(reqBody) {
+
+    <Helmet>
+               
+    <title>Login</title>
+</Helmet>
     setIsLodding(true);
     try {
       setErrorMsg("");
@@ -26,7 +31,7 @@ export default function Login() {
       if (data.message === "success") {
         localStorage.setItem("userToken",data.token)
         setToken(data.token)
-        navigate("../");
+        navigate("/");
       } else {
         console.log(data.message);
       }

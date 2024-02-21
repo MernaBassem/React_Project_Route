@@ -1,19 +1,24 @@
 
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import Router from './Router/Router';
-import TokenContextProvider from './Context/Token';
+import { TokenContext } from './Context/Token';
 
 function App() {
-  
+  let {setToken}=useContext(TokenContext)
+  useEffect(()=>{
+    if(localStorage.getItem('userToken') !=null ){
+      setToken(localStorage.getItem('userToken') )
+    }
+  },[])
   return (
     <>
-    <TokenContextProvider>
+  
     <BrowserRouter>
     
     <Router />
     </BrowserRouter>
-    </TokenContextProvider>
+
         
    
     </>
