@@ -1,16 +1,17 @@
 
 
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { TokenContext } from "../../Context/Token";
 
 export default function Login() {
   let navigate = useNavigate();
   let [errorMsg, setErrorMsg] = useState("");
   let [isLodding, setIsLodding] = useState(false);
-
+  let {setToken} = useContext(TokenContext)
   async function callLogin(reqBody) {
     setIsLodding(true);
     try {
@@ -23,6 +24,8 @@ export default function Login() {
         });
 
       if (data.message === "success") {
+        localStorage.setItem("userToken",data.token)
+        setToken(data.token)
         navigate("../");
       } else {
         console.log(data.message);
@@ -110,7 +113,7 @@ export default function Login() {
           <button
             type="submit"
             className="btn text-light btn-success"
-            disabled={isLodding}
+            disabled={!(loginForm.isValid&&loginForm.dirty)}
           >
             {isLodding ? <i className="fa fa-spinner fa-spin"></i> : "Login"}
           </button>

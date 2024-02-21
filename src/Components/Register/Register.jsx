@@ -175,7 +175,7 @@ export default function Register() {
           <button
             type="submit"
             className="btn text-light btn-success"
-            disabled={isLodding}
+            disabled={!(registerForm.isValid&&registerForm.dirty)}
           >
             {isLodding ? <i className="fa fa-spinner fa-spin"></i> : "Register"}
           </button>
