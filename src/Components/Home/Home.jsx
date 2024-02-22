@@ -3,7 +3,7 @@ import styles from "./Home.module.css";
 import MainSlider from "../MainSlider/MainSlider";
 import CategorySlider from "../CategorySlider/CategorySlider";
 import {Helmet} from "react-helmet";
-import Products from "../Products/Products";
+import FeatureProduct from "../FeatureProduct/FeatureProduct";
 export default function Home() {
   return (
     <>
@@ -15,7 +15,7 @@ export default function Home() {
             </div>
       <MainSlider />
       <CategorySlider />
-      <Products/>
+      <FeatureProduct/>
      
     </>
   );

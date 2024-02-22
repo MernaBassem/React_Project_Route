@@ -9,17 +9,26 @@ import "slick-carousel/slick/slick-theme.css";
 import reportWebVitals from './reportWebVitals';
 import CounterContextProvider from './Context/Counter';
 import TokenContextProvider from './Context/Token';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
+
+
+
+let query = new QueryClient()
 
 ReactDOM.render(
-  <React.StrictMode>
-    <CounterContextProvider>
-      <TokenContextProvider>
-      <App />
-      </TokenContextProvider>
+  <QueryClientProvider client={query}>
+    <React.StrictMode>
+      <CounterContextProvider>
+        <TokenContextProvider>
+          <App />
+        </TokenContextProvider>
 
-    </CounterContextProvider>
-    
-  </React.StrictMode>,
+      </CounterContextProvider>
+
+    </React.StrictMode>
+  </QueryClientProvider>,
+
   document.getElementById('root')
 );
 

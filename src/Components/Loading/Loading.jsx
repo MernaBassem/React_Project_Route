@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
-import styles from "./Lodding.module.css";
+import styles from "./Loading.module.css";
 
 import { TailSpin } from "react-loader-spinner";
 
-export default function Lodding() {
+export default function Loading() {
 
 
 
 
   return (
     <>
-    <div className={`${styles.lodding} d-flex justify-content-center align-items-center`}>
+    <div className={`${styles.loading} d-flex justify-content-center align-items-center`}>
     <TailSpin 
   visible={true}
   height="80"
