@@ -4,17 +4,27 @@ import { CartContext } from "../../Context/cartContent";
 import Loading from "../Loading/Loading";
 import { useQuery } from "@tanstack/react-query";
 import img1 from "../../assets/images/blog-img-1.jpeg";
+import toast from "react-hot-toast";
 
 export default function Cart() {
-  let { GetCart ,RemoveProductFromCart} = useContext(CartContext);
+  let { GetCart ,RemoveProductFromCart,UpdateProductFromCart} = useContext(CartContext);
   const [cartDetail, setCartDetail] = useState({});
   const [isLoading, setIsLoading] = useState(true);
 
   async function removeItem(id){
   let {data} =  await RemoveProductFromCart(id)
   setCartDetail(data);
+  toast.success('Product Removed Successfully')
   }
-
+  async function updateItem(id,count){
+    let {data} =  await UpdateProductFromCart(id,count)
+    if (count==0){
+      removeItem(id)
+    }
+    setCartDetail(data);
+  
+    }
+  
 
   async function getCartDetails() {
     try {
@@ -74,9 +84,9 @@ export default function Cart() {
                       </button>
                     </div>
                     <div>
-                      <button className="cart_button fs-3 px-3 mx-3">-</button>
+                      <button className="cart_button fs-3 px-3 mx-3" onClick={()=>updateItem(pro.product._id,pro.count-1)}>-</button>
                       <span className="fs-3">{pro.count} </span>
-                      <button className="cart_button fs-3 px-3 mx-3">+</button>
+                      <button className="cart_button fs-3 px-3 mx-3" onClick={()=>updateItem(pro.product._id,pro.count+1)}>+</button>
                     </div>
                   </div>
                 </div>
