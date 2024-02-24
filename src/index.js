@@ -10,6 +10,7 @@ import reportWebVitals from './reportWebVitals';
 import CounterContextProvider from './Context/Counter';
 import TokenContextProvider from './Context/Token';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import CartContentProvider from './Context/cartContent';
 
 
 
@@ -17,7 +18,9 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 let query = new QueryClient()
 
 ReactDOM.render(
-  <QueryClientProvider client={query}>
+
+  <CartContentProvider >
+ <QueryClientProvider client={query}>
     <React.StrictMode>
       <CounterContextProvider>
         <TokenContextProvider>
@@ -27,7 +30,9 @@ ReactDOM.render(
       </CounterContextProvider>
 
     </React.StrictMode>
-  </QueryClientProvider>,
+  </QueryClientProvider>
+  </CartContentProvider>
+ ,
 
   document.getElementById('root')
 );

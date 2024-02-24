@@ -1,15 +1,26 @@
-import React from 'react';
+import React, {  useContext } from 'react';
 import axios from "axios";
 import Loading from "../Loading/Loading";
 import { useQuery } from '@tanstack/react-query';
-import { Link } from 'react-router-dom'; // Import Link from react-router-dom
+import { Link } from 'react-router-dom'; 
+import toast from 'react-hot-toast';
+import { CartContext } from "../../Context/cartContent";
 
 export default function FeatureProduct() {
+  let {AddToCart} = useContext(CartContext)
   const { data, isLoading } = useQuery({
     queryKey: "products",
     queryFn: getProduct
   });
+  async function addCart(id){
+    let response = await AddToCart(id)
+    if (response.data.status == "success"){
+    toast.success('Product Added Successfully')
+    }else{
+    toast.error('Product can not added')
 
+    }
+  }
   function getProduct() {
     return axios.get(`https://ecommerce.routemisr.com/api/v1/products`);
   }
@@ -37,7 +48,7 @@ export default function FeatureProduct() {
                   </div>
                   </Link>
                 
-                  <button className="btn my-2 w-100 bg-main fs-5 py-2 text-light">+ Add</button>
+                  <button onClick={()=> addCart(pro._id)} className="btn my-2 w-100 bg-main fs-5 py-2 text-light">+ Add</button>
                 </div>
               
             </div>

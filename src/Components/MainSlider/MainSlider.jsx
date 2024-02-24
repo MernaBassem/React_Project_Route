@@ -13,11 +13,12 @@ export default function MainSlider() {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
+    arrows:false,
   };
   return (
     <>
       <div className="container my-5  overflow-hidden ">
-        <div className="row gap-0">
+        <div className="row gx-0">
           <div className="col-md-8">
             <Slider {...settings} className="w-100">
               <img src={img1} alt="image1" className="w-100" height={"400px"} />

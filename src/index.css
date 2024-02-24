@@ -63,3 +63,9 @@ a , a:hover{
 {
     background-color: var(--light-color) !important;
 }
+
+.cart_button{
+    color : var(--main-color) ;
+    border: solid 2px var(--main-color);
+    border-radius: 5px;
+}
