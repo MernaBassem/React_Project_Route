@@ -21,12 +21,16 @@ function GetCart (){
    }).then((res)=>res).catch((error)=>error)
  }
 
-
+function RemoveProductFromCart (id){
+  return axios.delete(`https://ecommerce.routemisr.com/api/v1/cart/${id}`,{
+     headers
+   }).then((res)=>res).catch((error)=>error)
+ }
 
 export default function CartContentProvider(props){
     return(
         <>
-        <CartContext.Provider value={{AddToCart,GetCart}}>
+        <CartContext.Provider value={{AddToCart,GetCart,RemoveProductFromCart}}>
           {props.children}
         </CartContext.Provider>
         </>

@@ -6,9 +6,15 @@ import { useQuery } from "@tanstack/react-query";
 import img1 from "../../assets/images/blog-img-1.jpeg";
 
 export default function Cart() {
-  let { GetCart } = useContext(CartContext);
+  let { GetCart ,RemoveProductFromCart} = useContext(CartContext);
   const [cartDetail, setCartDetail] = useState({});
   const [isLoading, setIsLoading] = useState(true);
+
+  async function removeItem(id){
+  let {data} =  await RemoveProductFromCart(id)
+  setCartDetail(data);
+  }
+
 
   async function getCartDetails() {
     try {
@@ -44,7 +50,7 @@ export default function Cart() {
               <h3 className="h5 fw-bold">
                 Total Numbers of Cart Item :{" "}
                 <span className="text-main">
-                  {cartDetail.data.numOfCartItems}
+                  {cartDetail.numOfCartItems}
                 </span>
               </h3>
             </div>
@@ -62,10 +68,10 @@ export default function Cart() {
                     <div>
                       <h3 className="fw-bold">{pro.product.title}</h3>
                       <h5 className="text-main fw-bold">{pro.price} EGP</h5>
-                      <h6 className="text-danger fw-bold">
+                      <button onClick={()=>removeItem(pro.product._id) } className="text-danger bg-transparent border-0  fw-bold">
                         <i className="fa-solid fa-trash-can me-2"></i>
                         Remove
-                      </h6>
+                      </button>
                     </div>
                     <div>
                       <button className="cart_button fs-3 px-3 mx-3">-</button>
