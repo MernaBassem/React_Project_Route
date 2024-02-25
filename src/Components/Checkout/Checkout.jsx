@@ -2,6 +2,7 @@ import { useFormik } from "formik";
 import React, { useContext, useState } from "react";
 import * as Yup from "yup";
 import { CartContext } from "../../Context/cartContent";
+import { Helmet } from "react-helmet";
 
 export default function Checkout() {
   let [errorMsg, setErrorMsg] = useState("");
@@ -50,6 +51,8 @@ export default function Checkout() {
   });
   return (
     <>
+    <Helmet><title>
+      CheckOut</title></Helmet>
       <div className="container my-5">
         <div className="mx-auto bg-main-light p-5">
           <h2> Shipping Address</h2>

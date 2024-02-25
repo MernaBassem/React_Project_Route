@@ -4,6 +4,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { Helmet } from "react-helmet";
 
 export default function Register() {
   let navigate = useNavigate();
@@ -65,7 +66,13 @@ export default function Register() {
   });
 
   return (
-    <div className="w-50 mx-auto my-5">
+    <>
+    <Helmet>
+      <title>
+        Register
+      </title>
+    </Helmet>
+       <div className="w-50 mx-auto my-5">
       <h2 className="mb-3">Register Now</h2>
       {errorMsg ? (
         <div className="alert alert-danger mt-3">{errorMsg}</div>
@@ -182,5 +189,7 @@ export default function Register() {
         </div>
       </form>
     </div>
+    </>
+ 
   );
 }

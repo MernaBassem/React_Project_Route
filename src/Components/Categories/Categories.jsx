@@ -4,6 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import axios from "axios";
 import Loading from "../Loading/Loading";
 import { Link } from 'react-router-dom'; 
+import { Helmet } from 'react-helmet';
 
 export default function Categories() {
   const { data, isLoading } = useQuery({
@@ -15,6 +16,11 @@ export default function Categories() {
   }
 
   return <>
+  <Helmet >
+    <title>
+      Categories
+    </title>
+  </Helmet>
         <div className="container mb-5 pb-5 overflow-hidden">
       {isLoading ? (
         <Loading />

@@ -3,6 +3,7 @@ import axios from "axios";
 import Loading from "../Loading/Loading";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 export default function SubCategory() {
   const { id, name } = useParams();
@@ -18,7 +19,13 @@ export default function SubCategory() {
   }
 
   return (
-    <div className="container mb-5 pb-5 overflow-hidden">
+    <>
+    
+    <Helmet>
+
+      <title>SubCategories</title>
+    </Helmet>
+     <div className="container mb-5 pb-5 overflow-hidden">
       {isLoading ? (
         <Loading />
       ) : (
@@ -42,5 +49,7 @@ export default function SubCategory() {
         </div>
       )}
     </div>
+    </>
+   
   );
 }

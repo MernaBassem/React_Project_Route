@@ -7,6 +7,7 @@ import Slider from "react-slick";
 import toast from 'react-hot-toast';
 import { CartContext } from "../../Context/cartContent";
 import{  useContext } from 'react';
+import { Helmet } from "react-helmet";
 
 export default function DetailProduct() {
   let {AddToCart,setNumOfCartItems} = useContext(CartContext)
@@ -43,7 +44,13 @@ export default function DetailProduct() {
   const detailPro = data?.data?.data;
 
   return (
-    <div className="container mb-5 pb-5 overflow-hidden">
+    <>
+<Helmet>
+  <title>
+    Details
+  </title>
+</Helmet>
+<div className="container mb-5 pb-5 overflow-hidden">
       {isLoading ? (
         <Loading />
       ) : (
@@ -82,5 +89,7 @@ export default function DetailProduct() {
         </div>
       )}
     </div>
+    </>
+   
   );
 }

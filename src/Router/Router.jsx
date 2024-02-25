@@ -14,6 +14,7 @@ import DetailProduct from "../Components/DetailProduct/DetailProduct";
 import Checkout from "../Components/Checkout/Checkout";
 import Allorders from "../Components/Allorders/Allorders";
 import SubCategory from "../Components/SubCategory/SubCategory";
+import WishList from "../Components/WishList/WishList";
 
 export default function Router() {
   return (
@@ -90,6 +91,14 @@ export default function Router() {
           element={
             <ProtectedRoutes>
               <SubCategory />
+            </ProtectedRoutes>
+          }
+        />
+           <Route
+          path="/wishList"
+          element={
+            <ProtectedRoutes>
+            <WishList />
             </ProtectedRoutes>
           }
         />

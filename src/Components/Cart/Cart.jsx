@@ -6,6 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import img1 from "../../assets/images/blog-img-1.jpeg";
 import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 export default function Cart() {
   let { GetCart ,RemoveProductFromCart,UpdateProductFromCart,setNumOfCartItems,numOfCartItems} = useContext(CartContext);
@@ -47,6 +48,9 @@ export default function Cart() {
 
   return (
     <>
+    <Helmet>
+      <title>Cart</title>
+    </Helmet>
       {isLoading ? (
         <Loading />
       ) : (
@@ -107,7 +111,7 @@ export default function Cart() {
         ): (
           <div className="container">
             <div className="bg-main-light  mx-auto w-50 text-white p-5 my-5 text-center">
-              <h2 className="text-main fs-1  fw-bold">Your Cart is Empty</h2>
+              <h2 className="text-main fs-1  fw-bold"> Cart is Empty</h2>
             </div>
           </div>
 

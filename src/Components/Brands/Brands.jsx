@@ -4,6 +4,7 @@ import axios from "axios";
 import styles from "./Brands.module.css";
 
 import Loading from "../Loading/Loading";
+import { Helmet } from "react-helmet";
 
 export default function Brands() {
   const [layerVisible, setLayerVisible] = useState(false);
@@ -35,6 +36,10 @@ export default function Brands() {
 
   return (
     <>
+    <Helmet>
+
+      <title > Brands</title>
+    </Helmet>
       <div className="container mb-5 pb-5 overflow-hidden">
         <h1 className="text-main mb-5 fw-bold text-center" style={{ fontSize: "4rem" }}>
           All Brands

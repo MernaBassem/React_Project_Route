@@ -40,6 +40,7 @@ function UpdateProductFromCart(id, count) {
 
 
 
+
 export default function CartContentProvider(props) {
   const[cardId,setCartId]=useState(null)
   const[numOfCartItems,setNumOfCartItems]=useState(null)
