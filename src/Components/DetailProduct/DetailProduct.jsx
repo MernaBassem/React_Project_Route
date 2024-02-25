@@ -9,12 +9,14 @@ import { CartContext } from "../../Context/cartContent";
 import{  useContext } from 'react';
 
 export default function DetailProduct() {
-  let {AddToCart} = useContext(CartContext)
+  let {AddToCart,setNumOfCartItems} = useContext(CartContext)
 
   async function addCart(id){
     let response = await AddToCart(id)
     if (response.data.status == "success"){
     toast.success('Product Added Successfully')
+    setNumOfCartItems(response.data.numOfCartItems)
+
     }else{
     toast.error('Product can not added')
 

@@ -11,6 +11,8 @@ import Layout from "../Components/Layout/Layout";
 import NotFound from "../Components/NotFound/NotFound";
 import ProtectedRoutes from "../Components/ProtectedRoutes/ProtectedRoutes";
 import DetailProduct from "../Components/DetailProduct/DetailProduct";
+import Checkout from "../Components/Checkout/Checkout";
+import Allorders from "../Components/Allorders/Allorders";
 
 export default function Router() {
   return (
@@ -40,6 +42,14 @@ export default function Router() {
             </ProtectedRoutes>
           }
         />
+         <Route
+          path="/Checkout"
+          element={
+            <ProtectedRoutes>
+              <Checkout />
+            </ProtectedRoutes>
+          }
+        />
         <Route
           path="/Brands"
           element={
@@ -54,6 +64,14 @@ export default function Router() {
           element={
             <ProtectedRoutes>
               <DetailProduct />
+            </ProtectedRoutes>
+          }
+        />
+             <Route
+          path="/allorders"
+          element={
+            <ProtectedRoutes>
+              <Allorders />
             </ProtectedRoutes>
           }
         />

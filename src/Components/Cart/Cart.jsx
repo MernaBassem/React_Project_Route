@@ -5,24 +5,26 @@ import Loading from "../Loading/Loading";
 import { useQuery } from "@tanstack/react-query";
 import img1 from "../../assets/images/blog-img-1.jpeg";
 import toast from "react-hot-toast";
+import { Link } from "react-router-dom";
 
 export default function Cart() {
-  let { GetCart ,RemoveProductFromCart,UpdateProductFromCart} = useContext(CartContext);
+  let { GetCart ,RemoveProductFromCart,UpdateProductFromCart,setNumOfCartItems} = useContext(CartContext);
   const [cartDetail, setCartDetail] = useState({});
   const [isLoading, setIsLoading] = useState(true);
 
   async function removeItem(id){
   let {data} =  await RemoveProductFromCart(id)
   setCartDetail(data);
+  setNumOfCartItems(data?.numOfCartItems)
   toast.success('Product Removed Successfully')
   }
   async function updateItem(id,count){
     let {data} =  await UpdateProductFromCart(id,count)
     if (count==0){
       removeItem(id)
+  
     }
     setCartDetail(data);
-  
     }
   
 
@@ -30,7 +32,9 @@ export default function Cart() {
     try {
       let { data } = await GetCart();
       setCartDetail(data);
+      setNumOfCartItems(data?.numOfCartItems)
       setIsLoading(false);
+      
     } catch (error) {
       console.error("Error fetching cart details:", error);
       setIsLoading(false);
@@ -92,6 +96,8 @@ export default function Cart() {
                 </div>
               </div>
             ))}
+          <Link className="btn bg-main w-100 text-white  my-3 fs-3 text-center" to={'/checkout'} >Checkout</Link>
+
           </div>
         </div>
       )}

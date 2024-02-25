@@ -7,7 +7,7 @@ import toast from 'react-hot-toast';
 import { CartContext } from "../../Context/cartContent";
 
 export default function FeatureProduct() {
-  let {AddToCart} = useContext(CartContext)
+  let {AddToCart,setNumOfCartItems} = useContext(CartContext)
   const { data, isLoading } = useQuery({
     queryKey: "products",
     queryFn: getProduct
@@ -16,6 +16,8 @@ export default function FeatureProduct() {
     let response = await AddToCart(id)
     if (response.data.status == "success"){
     toast.success('Product Added Successfully')
+    setNumOfCartItems(response.data.numOfCartItems)
+
     }else{
     toast.error('Product can not added')
 

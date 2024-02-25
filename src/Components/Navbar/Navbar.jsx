@@ -4,8 +4,11 @@ import { Link, useNavigate } from 'react-router-dom';
 import logo from '../../assets/images/freshcart-logo.svg'
 import { CounterContext } from '../../Context/Counter';
 import { TokenContext } from '../../Context/Token';
+import { CartContext } from '../../Context/cartContent';
 
 export default function Navbar() {
+  let { numOfCartItems} = useContext(CartContext);
+
   let {counter}= useContext(CounterContext)
   let {token,setToken}=useContext(TokenContext)
   let navigate = useNavigate()
@@ -19,7 +22,7 @@ export default function Navbar() {
 
   return <>
   <header>
-  <nav className="navbar navbar-expand-lg bg-body-tertiary">
+  <nav className="navbar navbar-expand-lg bg-body-tertiary  mb-5">
       <div className="container-fluid">
         <Link className="navbar-brand" to="/">
           <img src={logo} alt="fresh cart logo" />
@@ -43,11 +46,8 @@ export default function Navbar() {
            <li className="nav-item">
              <Link className="nav-link" to="/brands">Brands</Link>
            </li>
-           <li className="nav-item">
-             <Link className="nav-link" to="/cart">Cart</Link>
-           </li>
+    
          </ul>
-           
            :null}
           
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
@@ -59,10 +59,19 @@ export default function Navbar() {
               <i className='fab mx-2 fa-tiktok'></i>
             </li>
            
-            {token?
-               <li className="nav-item">
+            {token?<>
+              <li className="nav-item">
                <button className="nav-link" onClick={logOut}>Logout</button>
              </li>
+              <li className="nav-item ">
+             <Link className="nav-link" to="/cart">
+
+              <i className='fa fa-shopping-cart text-main fs-3'></i>
+              <span className=' text-main fs-4 p-1'>{ numOfCartItems}</span>
+             </Link>
+           </li>
+            </>
+             
             :<>
               <li className="nav-item">
               <Link className="nav-link" to="/login">Login</Link>
