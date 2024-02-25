@@ -12,6 +12,7 @@ export default function CategorySlider() {
         speed: 500,
         slidesToScroll: 1,
         slidesToShow: 8,
+        autoplay:true,
         responsive: [
           {
             breakpoint: 1500,

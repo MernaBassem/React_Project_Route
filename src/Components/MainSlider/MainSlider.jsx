@@ -14,6 +14,7 @@ export default function MainSlider() {
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows:false,
+    autoplay:true,
   };
   return (
     <>

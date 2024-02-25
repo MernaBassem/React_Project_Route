@@ -13,6 +13,7 @@ import ProtectedRoutes from "../Components/ProtectedRoutes/ProtectedRoutes";
 import DetailProduct from "../Components/DetailProduct/DetailProduct";
 import Checkout from "../Components/Checkout/Checkout";
 import Allorders from "../Components/Allorders/Allorders";
+import SubCategory from "../Components/SubCategory/SubCategory";
 
 export default function Router() {
   return (
@@ -80,6 +81,15 @@ export default function Router() {
           element={
             <ProtectedRoutes>
               <Categories />
+            </ProtectedRoutes>
+          }
+        />
+        
+        <Route
+          path="/category/:id/:name"
+          element={
+            <ProtectedRoutes>
+              <SubCategory />
             </ProtectedRoutes>
           }
         />

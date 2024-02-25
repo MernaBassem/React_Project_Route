@@ -8,7 +8,7 @@ import toast from "react-hot-toast";
 import { Link } from "react-router-dom";
 
 export default function Cart() {
-  let { GetCart ,RemoveProductFromCart,UpdateProductFromCart,setNumOfCartItems} = useContext(CartContext);
+  let { GetCart ,RemoveProductFromCart,UpdateProductFromCart,setNumOfCartItems,numOfCartItems} = useContext(CartContext);
   const [cartDetail, setCartDetail] = useState({});
   const [isLoading, setIsLoading] = useState(true);
 
@@ -50,7 +50,10 @@ export default function Cart() {
       {isLoading ? (
         <Loading />
       ) : (
-        <div className="container my-5 pb-5 overflow-hidden">
+        cartDetail?.data && numOfCartItems!=0?(
+
+          <>
+           <div className="container my-5 pb-5 overflow-hidden">
           <div className="mx-auto bg-main-light py-3 px-4">
             <h1 className="fw-bold">Cart Shop</h1>
             <div className="d-flex justify-content-between my-3">
@@ -100,6 +103,16 @@ export default function Cart() {
 
           </div>
         </div>
+          </>
+        ): (
+          <div className="container">
+            <div className="bg-main-light  mx-auto w-50 text-white p-5 my-5 text-center">
+              <h2 className="text-main fs-1  fw-bold">Your Cart is Empty</h2>
+            </div>
+          </div>
+
+        )
+       
       )}
     </>
   );

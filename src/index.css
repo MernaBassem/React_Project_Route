@@ -27,12 +27,19 @@ a , a:hover{
 .product{
     border: solid 1px transparent;
 }
-.product:hover {
+.category{
+    border: solid 1px gray;
+    border-radius: 7px;
+}
+.product:hover ,.category:hover{
     box-shadow: var(--shadow);
     border: solid 1px var(--main-color);
     border-radius: 7px;
 }
-
+.category img{
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+}
 
 
 .product .btn 
