@@ -23,7 +23,7 @@ export default function SubCategory() {
         <Loading />
       ) : (
         <div className="row gy-5">
-          <h1 className="text-main text-center fw-bold ">{name} subcategories</h1>
+          <h1 className="text-main text-center fw-bold ">{name} SubCategories</h1>
           {data?.data?.data.map((subCategory) => (
             <div key={subCategory._id} className="col-md-12 cursor-pointer">
               <div className="category">
