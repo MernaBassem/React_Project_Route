@@ -5,29 +5,30 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { TokenContext } from "../../Context/Token";
 import { Helmet } from "react-helmet";
-export default function Login() {
+export default function ResetPassword() {
   let navigate = useNavigate();
   let [errorMsg, setErrorMsg] = useState("");
-  let [isLodding, setIsLodding] = useState(false);
+  let [isLoading, setisLoading] = useState(false);
   let { setToken } = useContext(TokenContext);
-  async function callLogin(reqBody) {
+  async function callResetPassword(reqBody) {
   
-    setIsLodding(true);
+    setisLoading(true);
     try {
       setErrorMsg("");
       let { data } = await axios
-        .post(`https://ecommerce.routemisr.com/api/v1/auth/signin`, reqBody)
+        .put(`https://ecommerce.routemisr.com/api/v1/auth/resetPassword `, reqBody)
         .catch((err) => {
-          setIsLodding(false);
+          setisLoading(false);
           setErrorMsg(err.response.data.message);
         });
 
-      if (data.message === "success") {
+      if (data) {
         localStorage.setItem("userToken", data.token);
         setToken(data.token);
         navigate("/");
       } else {
-        console.log(data.message);
+        console.log("data massage",data.message);
+        console.log("data is",data);
       }
     } catch (error) {
       console.error("Registration failed:", error);
@@ -36,7 +37,7 @@ export default function Login() {
 
   const validationSchema = Yup.object({
     email: Yup.string().email("Email Not Valid").required("Email is Required"),
-    password: Yup.string()
+    newPassword: Yup.string()
       .min(6, "Password must be at least 6 characters")
       .matches(
         /^[a-zA-Z0-9]{6,30}$/,
@@ -45,13 +46,13 @@ export default function Login() {
       .required("Password is Required"),
   });
 
-  const loginForm = useFormik({
+  const resetPasswordForm = useFormik({
     initialValues: {
       email: "",
-      password: "",
+      newPassword: "",
     },
     validationSchema,
-    onSubmit: callLogin,
+    onSubmit: callResetPassword,
   });
 
   return (
@@ -59,69 +60,65 @@ export default function Login() {
     
     <Helmet>
     <title>
-        Login
+        ResetPassword
       </title>
     </Helmet>
     <div className="w-50 mx-auto my-5">
-      <h2 className="mb-3">Login Now</h2>
+      <h2 className="mb-3">ResetPassword Now</h2>
       {errorMsg ? (
         <div className="alert alert-danger mt-3">{errorMsg}</div>
       ) : null}
-      <form onSubmit={loginForm.handleSubmit}>
+      <form onSubmit={resetPasswordForm.handleSubmit}>
         <div className="form-group my-3">
           <label htmlFor="email" className="mb-1">
             Email
           </label>
           <input
             type="email"
-            className="w-100"
+            className="w-100 py-2 px-3"
             id="email"
-            value={loginForm.values.email}
+            value={resetPasswordForm.values.email}
             name="email"
-            onChange={loginForm.handleChange}
-            onBlur={loginForm.handleBlur}
-            disabled={isLodding}
+            placeholder="Enter Email"
+            onChange={resetPasswordForm.handleChange}
+            onBlur={resetPasswordForm.handleBlur}
+            disabled={isLoading}
           />
-          {loginForm.errors.email && loginForm.touched.email ? (
+          {resetPasswordForm.errors.email && resetPasswordForm.touched.email ? (
             <div className="alert alert-danger mt-3">
-              {loginForm.errors.email}
+              {resetPasswordForm.errors.email}
             </div>
           ) : null}
         </div>
         <div className="form-group my-3">
-          <label htmlFor="password" className="mb-1">
-            Password
+          <label htmlFor="newPassword" className="mb-1">
+           New Password
           </label>
           <input
             type="password"
-            className="w-100"
-            id="password"
-            value={loginForm.values.password}
-            name="password"
-            onChange={loginForm.handleChange}
-            onBlur={loginForm.handleBlur}
-            disabled={isLodding}
+            className="w-100 py-2 px-3"
+            id="newPassword"
+            value={resetPasswordForm.values.newPassword}
+            name="newPassword"
+            placeholder="Enter The New Password"
+            onChange={resetPasswordForm.handleChange}
+            onBlur={resetPasswordForm.handleBlur}
+            disabled={isLoading}
           />
-          {loginForm.errors.password && loginForm.touched.password ? (
+          {resetPasswordForm.errors.newPassword && resetPasswordForm.touched.newPassword ? (
             <div className="alert alert-danger mt-3">
-              {loginForm.errors.password}
+              {resetPasswordForm.errors.newPassword}
             </div>
           ) : null}
         </div>
 
         <div className="d-flex justify-content-between my-3">
-        <Link
-      to="/forgetPassword"
-      className="text-main fs-5 text-decoration-none"
-      style={{ textDecoration: "none", ":hover": { textDecoration: "underline" } }}
-    >
-      Forget Password
-    </Link>          <button
+           <button
             type="submit"
             className="btn text-light btn-success"
-            disabled={!(loginForm.isValid && loginForm.dirty)}
+            disabled={!(resetPasswordForm.isValid && resetPasswordForm.dirty)}
           >
-            {isLodding ? <i className="fa fa-spinner fa-spin"></i> : "Login"}
+            {isLoading ? <i className="fa fa-spinner fa-spin"></i> : "Reset Password"}
           </button>
         </div>
       </form>

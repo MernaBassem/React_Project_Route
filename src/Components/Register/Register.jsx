@@ -41,8 +41,8 @@ export default function Register() {
     password: Yup.string()
       .min(6, "Password must be at least 6 characters")
       .matches(
-        /^[A-Z][a-z0-9]{3,8}$/,
-        "invalid password, should be ex. Dnd345m and max length 8"
+        /^[a-zA-Z0-9]{6,30}$/,
+        "invalid password, should be ex. aDnd345m and max length 30"
       )
       .required("Password is Required"),
     rePassword: Yup.string()

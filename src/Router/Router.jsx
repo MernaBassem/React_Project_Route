@@ -15,6 +15,9 @@ import Checkout from "../Components/Checkout/Checkout";
 import Allorders from "../Components/Allorders/Allorders";
 import SubCategory from "../Components/SubCategory/SubCategory";
 import WishList from "../Components/WishList/WishList";
+import ForgotPassword from "../Components/ForgetPassword/ForgetPassword";
+import ResetCode from "../Components/ResetCode/ResetCode";
+import ResetPassword from "../Components/ResetPassword/ResetPassword";
 
 export default function Router() {
   return (
@@ -103,6 +106,9 @@ export default function Router() {
           }
         />
         <Route path="/Login" element={<Login />} />
+        <Route path="/forgetPassword" element={<ForgotPassword />} />
+        <Route path="/resetCode" element={<ResetCode/>} />
+        <Route path="/resetPassword" element={<ResetPassword/>} />
         <Route path="/Register" element={<Register />} />
         <Route path="*" element={<NotFound />} />
       </Route>
