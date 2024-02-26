@@ -196,7 +196,7 @@ export default function WishList() {
                   <div className="col-md-11">
                     <div className="d-flex justify-content-between align-items-center">
                       <div>
-                        <h3 className="fw-bold">{pro.title}</h3>
+                        <h3 className="fw-bold">{pro.title.split(" ").slice(0, 3).join(" ")}</h3>
                         <h5 className="text-main fw-bold">{pro.price} EGP</h5>
                         <button
                           onClick={() => removeWhichList(pro._id)}
