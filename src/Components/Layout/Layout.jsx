@@ -13,10 +13,10 @@ export default function Layout() {
         </head>
         <body>
           <Navbar />
-          <div> 
-            <Outlet />
-            <Toaster />
-          </div>
+          <div style={{ marginTop: "100px" }}> 
+        <Outlet />
+        <Toaster />
+      </div>
           <Footer />
         </body>
       </html>

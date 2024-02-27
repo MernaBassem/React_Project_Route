@@ -22,7 +22,7 @@ export default function Navbar() {
 
   return <>
   <header>
-  <nav className="navbar navbar-expand-lg bg-body-tertiary  mb-5">
+  <nav className="navbar fixed-top  navbar-expand-lg bg-body-tertiary  mb-5">
       <div className="container-fluid">
         <Link className="navbar-brand" to="/">
           <img src={logo} alt="fresh cart logo" />
@@ -48,6 +48,9 @@ export default function Navbar() {
            </li>
            <li className="nav-item">
              <Link className="nav-link" to="/wishList">WishList</Link>
+           </li>
+           <li className="nav-item">
+             <Link className="nav-link" to="/allorders">All Order</Link>
            </li>
          </ul>
            :null}

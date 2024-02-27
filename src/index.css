@@ -27,17 +27,17 @@ a , a:hover{
 .product{
     border: solid 1px transparent;
 }
-.category,.brand{
+.category,.brand,.order,.product_order{
     border: solid 1px gray;
     border-radius: 7px;
 }
 
-.product:hover, .category:hover, .brand:hover {
+.product:hover, .category:hover, .brand:hover,.product_order:hover {
     box-shadow: 0 0 10px rgba(10, 173, 10, 0.5); /* Adjust values as needed */
     border: solid 1px var(--main-color);
     border-radius: 7px;
 }
-.category img,.brand img{
+.category img,.brand img,.product_order img{
     border-top-left-radius: 7px;
     border-top-right-radius: 7px;
 }
