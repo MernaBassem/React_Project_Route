@@ -74,10 +74,11 @@ export default function Login() {
           </label>
           <input
             type="email"
-            className="w-100"
+            className="w-100 py-2 px-3"
             id="email"
             value={loginForm.values.email}
             name="email"
+            placeholder="Enter The Email"
             onChange={loginForm.handleChange}
             onBlur={loginForm.handleBlur}
             disabled={isLodding}
@@ -94,10 +95,11 @@ export default function Login() {
           </label>
           <input
             type="password"
-            className="w-100"
+            className="w-100 py-2 px-3"
             id="password"
             value={loginForm.values.password}
             name="password"
+            placeholder="Enter The Password"
             onChange={loginForm.handleChange}
             onBlur={loginForm.handleBlur}
             disabled={isLodding}

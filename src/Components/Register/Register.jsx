@@ -84,10 +84,11 @@ export default function Register() {
           </label>
           <input
             type="text"
-            className="w-100"
+            className="w-100 py-2 px-3"
             id="fullName"
             value={registerForm.values.name}
             name="name"
+            placeholder="Enter The Name"
             onChange={registerForm.handleChange}
             onBlur={registerForm.handleBlur}
             disabled={isLodding}
@@ -104,8 +105,9 @@ export default function Register() {
           </label>
           <input
             type="email"
-            className="w-100"
+            className="w-100 py-2 px-3"
             id="email"
+            placeholder="Enter The Email"
             value={registerForm.values.email}
             name="email"
             onChange={registerForm.handleChange}
@@ -124,8 +126,9 @@ export default function Register() {
           </label>
           <input
             type="password"
-            className="w-100"
+            className="w-100 py-2 px-3"
             id="password"
+            placeholder="Enter The Password"
             value={registerForm.values.password}
             name="password"
             onChange={registerForm.handleChange}
@@ -140,14 +143,15 @@ export default function Register() {
         </div>
         <div className="form-group my-3">
           <label htmlFor="rePassword" className="mb-1">
-            RePassword
+            Confirm Password
           </label>
           <input
             type="password"
-            className="w-100"
+            className="w-100 py-2 px-3"
             id="rePassword"
             value={registerForm.values.rePassword}
             name="rePassword"
+            placeholder="Enter The Confirm Password"
             onChange={registerForm.handleChange}
             onBlur={registerForm.handleBlur}
             disabled={isLodding}
@@ -164,10 +168,11 @@ export default function Register() {
           </label>
           <input
             type="text"
-            className="w-100"
+            className="w-100 py-2 px-3"
             id="phone"
             value={registerForm.values.phone}
             name="phone"
+            placeholder="Enter The Phone"
             onChange={registerForm.handleChange}
             onBlur={registerForm.handleBlur}
             disabled={isLodding}
