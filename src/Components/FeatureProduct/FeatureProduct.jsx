@@ -1,4 +1,3 @@
-
 import React, { useContext, useState, useEffect } from "react";
 import axios from "axios";
 import Loading from "../Loading/Loading";
@@ -20,6 +19,8 @@ export default function FeatureProduct() {
   });
 
   const [wishlist, setWishlist] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filteredProducts, setFilteredProducts] = useState([]);
 
   async function getwishDetail() {
     try {
@@ -49,7 +50,7 @@ export default function FeatureProduct() {
       const response = await AddToWishList(id);
       toast.success("Product Added to Favorites");
       setWishlist([...wishlist, id]);
-      localStorage.setItem("wishlist", JSON.stringify([...wishlist, id])); 
+      localStorage.setItem("wishlist", JSON.stringify([...wishlist, id]));
     } catch (error) {
       toast.error("Product can not be added");
     }
@@ -62,7 +63,7 @@ export default function FeatureProduct() {
       localStorage.setItem(
         "wishlist",
         JSON.stringify(wishlist.filter((productId) => productId !== id))
-      ); 
+      );
       toast.success("Product Removed Successfully");
     } catch (error) {
       toast.error("Product can not be removed");
@@ -81,13 +82,30 @@ export default function FeatureProduct() {
     }
   }, []);
 
+  useEffect(() => {
+    if (data && data.data && data.data.data) {
+      const filtered = data.data.data.filter((product) =>
+        product.title.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+      setFilteredProducts(filtered);
+    }
+  }, [data, searchQuery]);
+
   return (
     <div className="container mb-5 pb-5 overflow-hidden">
       {isLoading ? (
         <Loading />
       ) : (
         <div className="row gy-5">
-          {data?.data?.data.map((pro) => (
+          <input
+            type="text"
+            className="w-100 py-3 px-4 search_input"
+            placeholder="Search By Name Product"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+
+          {filteredProducts.map((pro) => (
             <div key={pro._id} className="col-md-3 cursor-pointer">
               <div className="product py-3 px-2">
                 <Link
