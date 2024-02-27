@@ -4,7 +4,7 @@ import styles from "./Footer.module.css";
 export default function Footer() {
   return (
     <>
-      <footer className="bg-main-light fixed-bottom  p-5">
+      {/* <footer className="bg-main-light fixed-bottom  p-5">
         <div>
           <h2 className="fw-bold py-2 ">
             Get the FreshCart app
@@ -29,7 +29,7 @@ export default function Footer() {
             </div>
           </div>
         </div>
-      </footer>
+      </footer> */}
     </>
   );
 }
